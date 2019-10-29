@@ -60,6 +60,7 @@ public class CustomArrayListTest {
 				name = s;
 			}
 		}
+		
 		ArrayList<Student> list = new ArrayList<Student>();
 		list.add(new Student("Tim"));
 		list.add(new Student("Sara"));
@@ -67,6 +68,10 @@ public class CustomArrayListTest {
 		list.add(new Student("Devaugn"));
 		
 		list.remove(0);
+		
+	System.out.println(list.get(0).name);
+	System.out.println(list.get(1).name);
+	System.out.println(list.get(2).name);
 		
 		if(!list.get(0).name.equals("Sara")) {
 			fail("list.get(0) returning improper value.");

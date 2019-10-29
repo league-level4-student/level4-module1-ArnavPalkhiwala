@@ -26,34 +26,56 @@ public class ArrayList<T> {
 		templatesTwo[templates.length] = val;
 
 		templates = templatesTwo;
-		System.out.println(Arrays.toString(templates));
 	}
 
 	public void insert(int loc, T val) throws IndexOutOfBoundsException {
 
-	}
-
-	public void set(int loc, T val) throws IndexOutOfBoundsException {
-
-	}
-
-	public void remove(int loc) throws IndexOutOfBoundsException {
-		T[] templatesTwo = (T[]) new Object[templates.length - 1];
-		for (int i = 0; i < templates.length - 1; i++) {
+		T[] templatesTwo = (T[]) new Object[templates.length + 1];
+		for (int i = 0; i < templates.length; i++) {
 
 			if (i < loc) {
 				templatesTwo[i] = templates[i];
 
 			}
-			
+
 			else if (i == loc) {
-				
+				templatesTwo[i] = val;
 			}
-			
+
 			else {
-			
+
+				templatesTwo[i + 1] = templates[i];
+			}
+
+		}
+
+		templates = templatesTwo;
+
+	}
+
+	public void set(int loc, T val) throws IndexOutOfBoundsException {
+		templates[loc] = val;
+
+	}
+
+	public void remove(int loc) throws IndexOutOfBoundsException {
+		T[] templatesTwo = (T[]) new Object[templates.length - 1];
+		for (int i = 0; i < templates.length; i++) {
+
+			if (i < loc) {
+				templatesTwo[i] = templates[i];
+
+			}
+
+			else if (i == loc) {
+
+			}
+
+			else {
+
 				templatesTwo[i - 1] = templates[i];
 			}
+
 		}
 
 		templates = templatesTwo;
