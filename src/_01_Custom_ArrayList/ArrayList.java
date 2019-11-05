@@ -31,7 +31,7 @@ public class ArrayList<T> {
 	public void insert(int loc, T val) throws IndexOutOfBoundsException {
 
 		T[] templatesTwo = (T[]) new Object[templates.length + 1];
-		for (int i = 0; i < templates.length; i++) {
+		for (int i = 0; i < templatesTwo.length; i++) {
 
 			if (i < loc) {
 				templatesTwo[i] = templates[i];
@@ -44,7 +44,7 @@ public class ArrayList<T> {
 
 			else {
 
-				templatesTwo[i + 1] = templates[i];
+				templatesTwo[i] = templates[i - 1];
 			}
 
 		}
@@ -83,7 +83,19 @@ public class ArrayList<T> {
 	}
 
 	public boolean contains(T val) {
+		for (int i = 0; i < templates.length; i++) {
+			if (templates[i] == val) {
+
+				return true;
+			}
+		}
 
 		return false;
+	}
+
+	public int size() {
+		// TODO Auto-generated method stub
+		int realSize = templates.length;
+		return realSize;
 	}
 }
