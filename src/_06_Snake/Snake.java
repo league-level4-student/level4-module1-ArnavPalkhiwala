@@ -43,10 +43,13 @@ public class Snake {
 		//    in front of it.
 		
 		
+		
 		//3. set the location of the head to the new location calculated in step 1
 		
 
 		//4. set canMove to true
+		
+		canMove = true;
 		
 	}
 
