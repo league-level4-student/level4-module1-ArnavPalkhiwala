@@ -149,6 +149,7 @@ public class _00_SnakeGame implements ActionListener, KeyListener {
 			snake.feed();
 			break;
 		}
+		
 	}
 
 	private void setFoodLocation() {

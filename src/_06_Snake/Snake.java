@@ -55,6 +55,8 @@ public class Snake {
 			break;
 
 		}
+		
+		System.out.println(nextY);
 
 		// 2. Iterate through the SnakeSegments in reverse order
 
@@ -129,13 +131,13 @@ public class Snake {
 		// of the window
 		// and false otherwise
 
-		if (head.getLocation().x > _00_SnakeGame.WIDTH || head.getLocation().x < _00_SnakeGame.HEIGHT) {
+		if (head.getLocation().x > _00_SnakeGame.WIDTH || head.getLocation().x > _00_SnakeGame.HEIGHT) {
 
 			return true;
 
 		}
 
-		if (head.getLocation().y > _00_SnakeGame.HEIGHT || head.getLocation().y < _00_SnakeGame.HEIGHT) {
+		else if (head.getLocation().y < 0 || head.getLocation().y < 0) {
 
 			return true;
 
@@ -148,13 +150,29 @@ public class Snake {
 		// 1. complete the method so it returns true if the head is located
 		// in the same location as any other body segment
 
+		for (int i = 1; i < snake.size(); i++) {
+
+			if (head.getLocation().equals(snake.get(i).getLocation())) {
+
+				return true;
+
+			}
+		}
 		return false;
+
 	}
 
 	public boolean isLocationOnSnake(Location loc) {
 		// 1. complete the method so it returns true if the passed in
 		// location is located on the snake
 
+		for (int j = 0; j < snake.size(); j++) {
+
+			if (loc.equals(snake.get(j).getLocation())) {
+
+				return true;
+			}
+		}
 		return false;
 	}
 
