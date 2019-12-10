@@ -37,39 +37,44 @@ public class Snake {
 		// 1. use a switch statement to check on the currentDirection
 		// of the snake and calculate its next x and y position.
 
-		int nextX = 0;
-		int nextY = 0;
+		int changeX = 0;
+		int changeY = 0;
 		switch (currentDirection) {
 
 		case UP:
-			nextY--;
+			changeY--;
 			break;
 		case DOWN:
-			nextY++;
+			changeY++;
 			break;
 		case LEFT:
-			nextX--;
+			System.out.println("left");
+			changeX--;
 			break;
 		case RIGHT:
-			nextX++;
+			changeX++;
 			break;
 
 		}
-		
-		System.out.println(nextY);
+
+		System.out.println(changeY);
 
 		// 2. Iterate through the SnakeSegments in reverse order
 
-		for (int i = snake.size(); i < 0; i--) {
+		for (int i = snake.size() - 1; i > 0; i--) {
 
 			// 2a. Update each snake segment to the location of the segment
 			// in front of it.
 
-			snake.get(i).setLocation(snake.get(i + 1).getLocation());
+			SnakeSegment x = snake.get(i);
+			SnakeSegment t = snake.get(i - 1);
+			x.setLocation(t.getLocation());
 
-			// 3. set the location of the head to the new location calculated in step 1
+// 3. set the location of the head to the new location calculated in step 1
 
-			Location newL = new Location(nextX, nextY);
+			int headOldX = head.getLocation().x;
+			int headOldY = head.getLocation().y;
+			Location newL = new Location(changeX + headOldX, changeY + headOldY);
 			head.setLocation(newL);
 			// 4. set canMove to true
 
@@ -84,30 +89,31 @@ public class Snake {
 		// set canMove equal to false.
 		// make sure the snake cannot completely reverse directions.
 
-		if (canMove) {
 
-			currentDirection = d;
-			canMove = false;
-		}
-
-		if (d != Direction.UP) {
-
-			currentDirection = Direction.DOWN;
-		}
-
-		if (d != Direction.DOWN) {
+		if (d == Direction.UP && currentDirection != Direction.DOWN) {
 
 			currentDirection = Direction.UP;
 		}
 
-		if (d != Direction.LEFT) {
+		if (d == Direction.DOWN && currentDirection != Direction.UP) {
+
+			currentDirection = Direction.DOWN;
+		}
+
+		if (d == Direction.LEFT && currentDirection != Direction.RIGHT) {
+
+			currentDirection = Direction.LEFT;
+		}
+
+		if (d == Direction.RIGHT && currentDirection != Direction.LEFT) {
 
 			currentDirection = Direction.RIGHT;
 		}
+		
+		if (canMove) {
 
-		if (d != Direction.RIGHT) {
-
-			currentDirection = Direction.LEFT;
+			canMove = false;
+			currentDirection = d;
 		}
 
 	}

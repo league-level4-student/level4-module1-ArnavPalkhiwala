@@ -1,4 +1,4 @@
-package _06_Snake;
+ package _06_Snake;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -129,16 +129,16 @@ public class _00_SnakeGame implements ActionListener, KeyListener {
 		// if an arrow key is pressed, set the snake's
 		// direction accordingly
 		
-		case 37:
+		case KeyEvent.VK_LEFT:
 			snake.setDirection(Direction.LEFT);
 			break;
-		case 40:
+		case KeyEvent.VK_DOWN:
 			snake.setDirection(Direction.DOWN);
 			break;
-		case 38:
+		case KeyEvent.VK_UP:
 			snake.setDirection(Direction.UP);
 			break;
-		case 39:
+		case KeyEvent.VK_RIGHT:
 			snake.setDirection(Direction.RIGHT);
 			break;
 
@@ -186,7 +186,7 @@ public class _00_SnakeGame implements ActionListener, KeyListener {
 		// reset the snake and the food and start the timer
 		// else, exit the game
 		
-		if (answer == "yes") {
+		if (answer.equals("yes")) {
 			snake.reset(foodLocation);
 			timer.start();
 		}
