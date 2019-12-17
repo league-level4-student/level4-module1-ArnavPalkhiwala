@@ -41,20 +41,23 @@ public class Snake {
 		int changeY = 0;
 		switch (currentDirection) {
 
-		case UP:
-			changeY--;
+		case UP: {
+			changeY-=1;
 			break;
-		case DOWN:
-			changeY++;
+		}
+		case DOWN:{
+			changeY+=1;
 			break;
-		case LEFT:
+		}
+		case LEFT:{
 			System.out.println("left");
-			changeX--;
+			changeX-=1;
 			break;
-		case RIGHT:
-			changeX++;
+		}
+		case RIGHT:{
+			changeX+=1;
 			break;
-
+		}
 		}
 
 		System.out.println(changeY);
@@ -74,7 +77,7 @@ public class Snake {
 
 			int headOldX = head.getLocation().x;
 			int headOldY = head.getLocation().y;
-			Location newL = new Location(changeX + headOldX, changeY + headOldY);
+			Location newL = new Location(head.getLocation().x + changeX, head.getLocation().y + changeY);
 			head.setLocation(newL);
 			// 4. set canMove to true
 
@@ -90,25 +93,13 @@ public class Snake {
 		// make sure the snake cannot completely reverse directions.
 
 
-		if (d == Direction.UP && currentDirection != Direction.DOWN) {
-
-			currentDirection = Direction.UP;
-		}
-
-		if (d == Direction.DOWN && currentDirection != Direction.UP) {
-
-			currentDirection = Direction.DOWN;
-		}
-
-		if (d == Direction.LEFT && currentDirection != Direction.RIGHT) {
-
-			currentDirection = Direction.LEFT;
-		}
-
-		if (d == Direction.RIGHT && currentDirection != Direction.LEFT) {
-
-			currentDirection = Direction.RIGHT;
-		}
+		if((currentDirection == Direction.UP && d == Direction.DOWN) || 
+				(currentDirection == Direction.DOWN && d == Direction.UP) ||
+				(currentDirection == Direction.LEFT && d == Direction.RIGHT) ||
+				(currentDirection == Direction.RIGHT && d == Direction.LEFT)){
+				return;
+			}
+		
 		
 		if (canMove) {
 
@@ -137,13 +128,7 @@ public class Snake {
 		// of the window
 		// and false otherwise
 
-		if (head.getLocation().x > _00_SnakeGame.WIDTH || head.getLocation().x > _00_SnakeGame.HEIGHT) {
-
-			return true;
-
-		}
-
-		else if (head.getLocation().y < 0 || head.getLocation().y < 0) {
+		if (head.getLocation().x >= _00_SnakeGame.WIDTH || head.getLocation().y >= _00_SnakeGame.HEIGHT || head.getLocation().x < 0 || head.getLocation().y < 0) {
 
 			return true;
 
